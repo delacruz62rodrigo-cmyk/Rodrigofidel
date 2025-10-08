@@ -1,104 +1,297 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rodrigo Fidel</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tiempos De Cambio — Canserbero</title>
+
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    /* Reset mínimo */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
+    /* Contenedor full */
+    html, body { height: 100%; }
     body {
-      font-family: 'Arial', sans-serif;
-      color: white;
-      height: 100vh;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
-
-    /* VIDEO DE FONDO */
-    video {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -2;
-    }
-
-    /* CAPA OSCURA PARA DAR CONTRASTE */
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.6);
-      z-index: -1;
-    }
-
-    h1 {
-      font-size: 2rem;
-      color: #00ff66;
-      text-shadow: 0 0 15px #00ff66;
-      margin-bottom: 1rem;
-    }
-
-    h2 {
-      font-size: 1.5rem;
-      color: #00ff88;
-      text-shadow: 0 0 10px #00ff88;
-      margin-bottom: 1rem;
-    }
-
-    h3 {
-      color: gold;
-      font-size: 1.2rem;
-      text-shadow: 0 0 10px gold;
-      margin-bottom: 1rem;
-    }
-
-    p {
-      max-width: 600px;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      background: #000;
       color: #fff;
-      text-shadow: 0 0 5px #0f0;
-      font-size: 0.9rem;
+      overflow: hidden; /* evita scroll si querés efecto pantalla completa */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    span {
-      color: red;
-      text-shadow: 0 0 5px red;
+    /* VIDEO DE FONDO: ocupa toda la ventana */
+    .video-bg {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none; /* para que no bloqueen clics */
+    }
+    .video-bg iframe {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      width: 177.78vh;   /* relación 16:9 con cover-like behavior */
+      height: 100vh;
+      min-width: 100%;
+      min-height: 56.25vw;
+      border: 0;
+      filter: brightness(.35) contrast(1.05); /* oscurecer para que el neón destaque */
     }
 
-    /* BURBUJAS */
+    /* Overlay oscuro para más legibilidad */
+    .overlay-dark {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.55));
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Burbujas en movimiento (canvas-like usando elementos DOM) */
+    .bubbles {
+      position: fixed;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+    }
     .bubble {
       position: absolute;
-      bottom: -10px;
-      background: rgba(0, 255, 0, 0.6);
       border-radius: 50%;
-      animation: rise 10s infinite ease-in;
-      z-index: 1;
+      background: radial-gradient(circle at 30% 30%, rgba(126,255,93,0.95), rgba(25,120,20,0.6));
+      box-shadow: 0 0 18px rgba(0,255,80,0.35), 0 0 36px rgba(0,200,60,0.12);
+      opacity: 0.85;
+      transform: translate(-50%,-50%);
+      will-change: transform, opacity;
     }
 
-    @keyframes rise {
-      0% { transform: translateY(0) scale(1); opacity: 1; }
-      100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+    /* Contenido central (texto) */
+    .content {
+      position: relative;
+      z-index: 3;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 1.25rem;
+    }
+
+    /* Título grande con neón verde */
+    .title {
+      font-size: clamp(1.8rem, 5vw, 3.2rem);
+      color: #baff4a;
+      text-shadow:
+        0 0 10px rgba(180,255,90,0.9),
+        0 0 24px rgba(80,255,100,0.6),
+        0 8px 12px rgba(0,0,0,0.5);
+      margin: 1.6rem 0 5rem;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      filter: drop-shadow(0 0 8px rgba(90,255,100,0.25));
+    }
+
+    /* Subtitulo inglés */
+    .subtitle {
+      font-size: clamp(1.2rem, 3.2vw, 2rem);
+      margin-bottom: 1.75rem;
+      color: #dbff9a;
+      text-shadow: 0 0 8px rgba(120,255,100,0.25);
+      font-weight: 700;
+    }
+
+    /* Nombre naranja */
+    .author {
+      color: #ffb400;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      font-size: clamp(.95rem, 2.2vw, 1.1rem);
+      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+    }
+
+    /* Parrafo blanco y palabra naranja resaltada */
+    .description {
+      max-width: 720px;
+      color: #cfcfcf;
+      font-size: clamp(.85rem, 1.8vw, 1rem);
+      line-height: 1.6;
+      opacity: .95;
+    }
+    .description .highlight {
+      color: #ff6b00;
+      font-weight: 700;
+    }
+
+    /* Pie inferior: espacio para iconos tipo screenshot */
+    .bottom-space { height: 110px; }
+
+    /* Responsivo: ajustar separación en móviles */
+    @media (max-width: 520px) {
+      .title { margin-bottom: 4rem; }
+      .content { padding-top: 6rem; padding-bottom: 6rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Video de fondo con sonido -->
-  <video autoplay loop playsinline controls>
-    <source src="Canserbero - De la vida como pelicula y su tragedia comedia y ficción LETRA(720P_HD).mp4" type="video/mp4">
+  <!-- Video de fondo: ID del video YouTube -->
+  <div class="video-bg" aria-hidden="true">
+    <!-- 
+      Parámetros:
+      autoplay=1 -> intenta reproducir automát.
+      mute=0 -> intenta con sonido (puede bloquearse)
+      controls=0 -> oculta controles
+      loop=1 & playlist=ID -> permite loop
+      modestbranding=1 -> reduce branding
+    -->
+    <iframe
+      src="https://www.youtube.com/embed/OfxYngFCVms?autoplay=1&mute=0&controls=0&loop=1&playlist=OfxYngFCVms&modestbranding=1&rel=0"
+      title="Canserbero - De la vida como película"
+      allow="autoplay; encrypted-media; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+  </div>
+
+  <!-- Overlay oscuro para contraste -->
+  <div class="overlay-dark"></div>
+
+  <!-- Burbujas -->
+  <div class="bubbles" id="bubbles"></div>
+
+  <!-- Contenido -->
+  <main class="content" role="main">
+    <h1 class="title">Tiempos De Cambio – Canserbero</h1>
+
+    <h2 class="subtitle">All weed need is love</h2>
+
+    <div class="author">Rodrigo Fidel</div>
+
+    <p class="description">
+      Los científicos crean <span class="highlight">bombas destructivas</span> y en las noches agradecen que su
+      familia aún esté viva.
+    </p>
+
+    <div class="bottom-space" aria-hidden="true"></div>
+  </main>
+
+  <script>
+    /************************************************************************
+     * Generador de burbujas moviéndose. Crea burbujas aleatorias y las anima.
+     ************************************************************************/
+    (function () {
+      const BUBBLE_CONTAINER = document.getElementById('bubbles');
+      const BUBBLE_COUNT = Math.max(6, Math.round(window.innerWidth / 140)); // cantidad según ancho
+      const COLORS = [
+        // variaciones verdes similares a la captura
+        { sizeMult: 1.0, blur: 18, alpha: 0.95 },
+        { sizeMult: 0.65, blur: 12, alpha: 0.8 },
+        { sizeMult: 0.45, blur: 8, alpha: 0.7 }
+      ];
+
+      function rand(min, max) {
+        return Math.random() * (max - min) + min;
+      }
+
+      function createBubble(index) {
+        const el = document.createElement('div');
+        el.className = 'bubble';
+
+        // seleccionar estilo
+        const styleChoice = COLORS[Math.floor(Math.random()*COLORS.length)];
+
+        // tamaño base aleatorio
+        const baseSize = rand(8, 60) * styleChoice.sizeMult; // en px
+        el.style.width = baseSize + 'px';
+        el.style.height = baseSize + 'px';
+        el.style.opacity = styleChoice.alpha;
+
+        // uso de transform para posicion inicial fuera/ dentro
+        const startX = rand(5, 95);
+        const startY = rand(5, 95);
+
+        el.style.left = startX + '%';
+        el.style.top = startY + '%';
+
+        // sombra/blur dinámico
+        el.style.boxShadow = `0 0 ${styleChoice.blur}px rgba(0,255,80,0.28), 0 0 ${styleChoice.blur*2}px rgba(0,200,70,0.12)`;
+
+        // animación via Web Animations (mejor control)
+        animateBubble(el);
+
+        BUBBLE_CONTAINER.appendChild(el);
+      }
+
+      function animateBubble(el) {
+        // duración y trayectoria aleatoria
+        const dur = rand(9000, 23000);
+        const moveX = rand(-12, 12);
+        const moveY = rand(-18, 18);
+        const scale = rand(0.85, 1.35);
+        const rotate = rand(-30, 30);
+
+        const keyframes = [
+          { transform: `translate(0px, 0px) scale(1) rotate(0deg)`, opacity: 0.85 },
+          { transform: `translate(${moveX}px, ${moveY}px) scale(${scale}) rotate(${rotate}deg)`, opacity: 0.65 },
+          { transform: `translate(0px, 0px) scale(1) rotate(0deg)`, opacity: 0.85 }
+        ];
+
+        const timing = {
+          duration: dur,
+          iterations: Infinity,
+          easing: 'ease-in-out',
+          direction: 'alternate',
+          delay: rand(0, 3000)
+        };
+
+        // iniciar animación
+        el.animate(keyframes, timing);
+      }
+
+      // crear todas las burbujas
+      function initBubbles() {
+        BUBBLE_CONTAINER.innerHTML = '';
+        for (let i = 0; i < BUBBLE_COUNT; i++) createBubble(i);
+      }
+
+      // recrear al redimensionar para ajustar cantidad y tamaños
+      let resizeTimeout;
+      window.addEventListener('resize', function () {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(initBubbles, 300);
+      });
+
+      // init
+      initBubbles();
+
+      /***********************************************************************
+       * Touch / click handler para permitir reproducción con sonido si quedó bloqueado
+       * (al hacer interacción el navegador permitirá audio normalmente).
+       ***********************************************************************/
+      function enableControlOnInteraction() {
+        // enfocamos el iframe para permitir interacción; indicamos visual si querés.
+        const iframe = document.querySelector('.video-bg iframe');
+        if (!iframe) return;
+        // al primer click/tap hacemos foco en iframe para "desbloquear" autoplay con sonido
+        function one() {
+          // intentar reproducir mediante postMessage (YouTube Player API no incluido aquí).
+          // Simplemente removemos el listener (la interacción hace que los navegadores permitan audio).
+          window.removeEventListener('pointerdown', one);
+          window.removeEventListener('touchstart', one);
+          // opcional: mostrar un pequeño overlay o instrucción — aquí no la mostramos.
+        }
+        window.addEventListener('pointerdown', one, { once: true });
+        window.addEventListener('touchstart', one, { once: true });
+      }
+      enableControlOnInteraction();
+    })();
+  </script>
+</body>
+</html>    <source src="Canserbero - De la vida como pelicula y su tragedia comedia y ficción LETRA(720P_HD).mp4" type="video/mp4">
     Tu navegador no soporta videos HTML5.
   </video>
 
