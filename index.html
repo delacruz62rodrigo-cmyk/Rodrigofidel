@@ -10,20 +10,20 @@
       padding: 0;
       box-sizing: border-box;
     }
+
     body {
+      font-family: 'Arial', sans-serif;
+      color: white;
       height: 100vh;
       overflow: hidden;
-      color: #fff;
-      font-family: 'Arial', sans-serif;
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       text-align: center;
-      position: relative;
     }
 
-    /* 🎬 Video de fondo */
+    /* VIDEO DE FONDO */
     video {
       position: fixed;
       top: 0;
@@ -32,73 +32,100 @@
       height: 100%;
       object-fit: cover;
       z-index: -2;
-      opacity: 0.25;
     }
 
-    /* 🟢 Burbujas flotantes */
-    .bubble {
-      position: absolute;
-      bottom: -10px;
-      width: 15px;
-      height: 15px;
-      background: #00ff00;
-      border-radius: 50%;
-      opacity: 0.6;
-      animation: rise 10s infinite ease-in;
-    }
-
-    @keyframes rise {
-      0% {
-        transform: translateY(0) scale(1);
-        opacity: 0.5;
-      }
-      100% {
-        transform: translateY(-110vh) scale(1.5);
-        opacity: 0;
-      }
-    }
-
-    /* ✨ Textos con brillo */
-    h1, h2, h3, p {
-      z-index: 1;
-      text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+    /* CAPA OSCURA PARA DAR CONTRASTE */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: -1;
     }
 
     h1 {
-      font-size: 28px;
-      color: #00ff00;
-      margin-bottom: 20px;
+      font-size: 2rem;
+      color: #00ff66;
+      text-shadow: 0 0 15px #00ff66;
+      margin-bottom: 1rem;
     }
 
     h2 {
-      color: #00ff00;
-      font-size: 24px;
-      margin-bottom: 15px;
+      font-size: 1.5rem;
+      color: #00ff88;
+      text-shadow: 0 0 10px #00ff88;
+      margin-bottom: 1rem;
     }
 
     h3 {
       color: gold;
-      font-size: 20px;
-      margin-bottom: 10px;
-      text-shadow: 0 0 10px gold, 0 0 20px orange;
+      font-size: 1.2rem;
+      text-shadow: 0 0 10px gold;
+      margin-bottom: 1rem;
     }
 
     p {
-      color: white;
-      font-size: 16px;
-      max-width: 80%;
-      margin: 0 auto;
+      max-width: 600px;
+      color: #fff;
+      text-shadow: 0 0 5px #0f0;
+      font-size: 0.9rem;
     }
 
-    p span {
+    span {
       color: red;
-      font-weight: bold;
+      text-shadow: 0 0 5px red;
+    }
+
+    /* BURBUJAS */
+    .bubble {
+      position: absolute;
+      bottom: -10px;
+      background: rgba(0, 255, 0, 0.6);
+      border-radius: 50%;
+      animation: rise 10s infinite ease-in;
+      z-index: 1;
+    }
+
+    @keyframes rise {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
     }
   </style>
 </head>
 <body>
-  <!-- 🎥 Video de fondo -->
-  <video autoplay muted loop playsinline>
+
+  <!-- Video de fondo con sonido -->
+  <video autoplay loop playsinline controls>
+    <source src="Canserbero - De la vida como pelicula y su tragedia comedia y ficción LETRA(720P_HD).mp4" type="video/mp4">
+    Tu navegador no soporta videos HTML5.
+  </video>
+
+  <div class="overlay"></div>
+
+  <h1>Tiempos De Cambio – Canserbero</h1>
+  <h2>All weed need is love</h2>
+  <h3>Rodrigo Fidel</h3>
+  <p>Los científicos crean <span>bombas destructivas</span> y en las noches agradecen que su familia aún esté viva.</p>
+
+  <!-- Burbujas generadas con JavaScript -->
+  <script>
+    const createBubble = () => {
+      const bubble = document.createElement("div");
+      bubble.classList.add("bubble");
+      const size = Math.random() * 20 + 10 + "px";
+      bubble.style.width = size;
+      bubble.style.height = size;
+      bubble.style.left = Math.random() * 100 + "%";
+      bubble.style.animationDuration = 5 + Math.random() * 5 + "s";
+      document.body.appendChild(bubble);
+      setTimeout(() => bubble.remove(), 10000);
+    };
+    setInterval(createBubble, 400);
+  </script>
+</body>
+</html>  <video autoplay muted loop playsinline>
     <source src="https://raw.githubusercontent.com/delacruz62rodrigo-cmyk/main/Rodrigofidel/Canserbero-De%20la%20vida%20como%20pelicula%20y%20su%20tragedia%20comedia%20y%20ficción%20LETRA(720P_HD).mp4" type="video/mp4">
   </video>
 
