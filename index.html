@@ -3,117 +3,116 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rodrigofidel</title>
+  <title>Rodrigo Fidel</title>
   <style>
-    /* --- Fondo animado con burbujas --- */
-    .bubbles {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      pointer-events: none;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      height: 100vh;
       overflow: hidden;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
     }
 
+    /* 🎬 Video de fondo */
+    video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+      opacity: 0.25;
+    }
+
+    /* 🟢 Burbujas flotantes */
     .bubble {
       position: absolute;
-      bottom: -100px;
-      width: 40px;
-      height: 40px;
-      background: rgba(57, 255, 20, 0.3);
+      bottom: -10px;
+      width: 15px;
+      height: 15px;
+      background: #00ff00;
       border-radius: 50%;
-      animation: rise 6s infinite;
+      opacity: 0.6;
+      animation: rise 10s infinite ease-in;
     }
 
     @keyframes rise {
       0% {
-        transform: translateY(100vh) scale(0.5);
-        opacity: 0;
-      }
-      50% {
-        opacity: 1;
+        transform: translateY(0) scale(1);
+        opacity: 0.5;
       }
       100% {
-        transform: translateY(-10vh) scale(1);
+        transform: translateY(-110vh) scale(1.5);
         opacity: 0;
       }
     }
 
-    /* --- Estilos generales --- */
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      color: white;
-      text-align: center;
-      overflow: hidden;
-    }
-
-    /* --- Video de fondo --- */
-    #bg-video {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      min-width: 100%;
-      min-height: 100%;
-      width: auto;
-      height: auto;
-      z-index: -1;
-      transform: translate(-50%, -50%);
-      object-fit: cover;
-      filter: brightness(0.4);
-    }
-
-    /* --- Capa de oscurecimiento --- */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 0;
-    }
-
-    /* --- Contenido principal --- */
-    main {
-      position: relative;
+    /* ✨ Textos con brillo */
+    h1, h2, h3, p {
       z-index: 1;
-      padding: 20px;
+      text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
     }
 
     h1 {
-      font-size: 2em;
-      margin-top: 40vh;
+      font-size: 28px;
+      color: #00ff00;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      color: #00ff00;
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+
+    h3 {
+      color: gold;
+      font-size: 20px;
+      margin-bottom: 10px;
+      text-shadow: 0 0 10px gold, 0 0 20px orange;
     }
 
     p {
-      font-size: 1.2em;
-      opacity: 0.8;
+      color: white;
+      font-size: 16px;
+      max-width: 80%;
+      margin: 0 auto;
+    }
+
+    p span {
+      color: red;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-
-  <!-- 🎬 Video de fondo -->
-  <video id="bg-video" autoplay muted loop playsinline preload="auto">
-    <source src="https://raw.githubusercontent.com/delacruz62rodrigo-cmyk/Rodrigofidel/main/Tiempos%20De%20Cambio%20-%20Canserbero%20(Audio%20Oficial)%20Letra(720P_HD).mp4" type="video/mp4">
-    Tu navegador no soporta video.
+  <!-- 🎥 Video de fondo -->
+  <video autoplay muted loop playsinline>
+    <source src="https://raw.githubusercontent.com/delacruz62rodrigo-cmyk/main/Rodrigofidel/Canserbero-De%20la%20vida%20como%20pelicula%20y%20su%20tragedia%20comedia%20y%20ficción%20LETRA(720P_HD).mp4" type="video/mp4">
   </video>
 
-  <!-- ✨ Contenido principal -->
-  <main>
-    <h1>Bienvenido a Rodrigofidel</h1>
-    <p>Con música y estilo 🔥</p>
-  </main>
+  <!-- 🫧 Burbujas -->
+  <div class="bubble" style="left:10%; animation-duration:8s;"></div>
+  <div class="bubble" style="left:30%; animation-duration:9s;"></div>
+  <div class="bubble" style="left:50%; animation-duration:11s;"></div>
+  <div class="bubble" style="left:70%; animation-duration:10s;"></div>
+  <div class="bubble" style="left:90%; animation-duration:12s;"></div>
 
-  <!-- 🌫 Burbujas -->
-  <div class="bubbles">
-    <div class="bubble" style="left:10%; animation-delay: 0s;"></div>
-    <div class="bubble" style="left:30%; animation-delay: 2s;"></div>
-    <div class="bubble" style="left:50%; animation-delay: 4s;"></div>
-    <div class="bubble" style="left:70%; animation-delay: 1s;"></div>
-    <div class="bubble" style="left:90%; animation-delay: 3s;"></div>
-  </div>
-
+  <!-- ✨ Texto -->
+  <h1>Tiempos De Cambio – Canserbero</h1>
+  <h2>All weed need is love</h2>
+  <h3>Rodrigo Fidel</h3>
+  <p>Los científicos crean <span>bombas destructivas</span> y en las noches agradecen que su familia aún esté viva.</p>
 </body>
 </html>
