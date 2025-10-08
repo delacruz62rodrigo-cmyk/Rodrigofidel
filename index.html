@@ -1,28 +1,106 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rodrigo Fidel de la Cruz</title>
-  <style>
-    body {
-      background: linear-gradient(135deg, #000000, #1e3c72);
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      font-family: 'Arial', sans-serif;
-      text-align: center;
-    }
-    h1 {
-      font-size: 3em;
-      text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rodrigo Fidel</title>
+    <style>
+        /* Reset y estilo general */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #000000, #111111, #0a0a0a);
+            color: #39FF14;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        /* Animación para el texto principal */
+        @keyframes glow {
+            0%, 100% {
+                text-shadow: 0 0 5px #39FF14, 0 0 10px #39FF14, 0 0 20px #39FF14;
+            }
+            50% {
+                text-shadow: 0 0 10px #39FF14, 0 0 20px #39FF14, 0 0 30px #39FF14;
+            }
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 0.5em;
+            animation: glow 2s infinite alternate;
+        }
+
+        h2 {
+            font-size: 2em;
+            margin-bottom: 0.5em;
+            color: #FFD700; /* Dorado para tu nombre */
+            text-shadow: 2px 2px 5px #FFD700;
+        }
+
+        p {
+            font-size: 1.2em;
+            max-width: 700px;
+            line-height: 1.5;
+            color: #CCCCCC;
+            text-shadow: 1px 1px 3px #000000;
+        }
+
+        .highlight {
+            color: #FF4500; /* Naranja brillante para resaltar palabras importantes */
+            font-weight: bold;
+        }
+
+        /* Fondo animado sutil con burbujas de luz */
+        .bubbles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(57, 255, 20, 0.4);
+            animation: rise 6s infinite;
+        }
+
+        @keyframes rise {
+            0% {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1);
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
 <body>
-  <h1>Rodrigo Fidel de la Cruz</h1>
+    <div class="bubbles">
+        <!-- Burbujas dinámicas -->
+        <div class="bubble" style="width:20px; height:20px; left:10%; animation-delay:0s;"></div>
+        <div class="bubble" style="width:30px; height:30px; left:40%; animation-delay:1s;"></div>
+        <div class="bubble" style="width:15px; height:15px; left:70%; animation-delay:2s;"></div>
+        <div class="bubble" style="width:25px; height:25px; left:80%; animation-delay:3s;"></div>
+    </div>
+
+    <h1>All weed need is love</h1>
+    <h2>Rodrigo Fidel</h2>
+    <p>Los científicos crean <span class="highlight">bombas destructivas</span> y en las noches agradecen que su familia aún esté viva.</p>
 </body>
 </html>
