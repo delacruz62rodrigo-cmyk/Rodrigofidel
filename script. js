@@ -1,0 +1,18 @@
+// script.js - togglear menú y simular envío de formulario
+document.addEventListener('DOMContentLoaded', ()=> {
+  const btn = document.querySelector('.menu-toggle');
+  const header = document.querySelector('header');
+  if(btn){
+    btn.addEventListener('click', ()=> header.classList.toggle('nav-open'));
+  }
+
+  const form = document.querySelector('.contacto form');
+  if(form){
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      // Mensaje simple de éxito (sin backend)
+      alert('Gracias — tu mensaje se ha simulado como enviado. Para recibir mensajes reales, integrar Formspree o un servidor.');
+      form.reset();
+    });
+  }
+});
