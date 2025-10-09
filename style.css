@@ -1,0 +1,165 @@
+/* style.css - NovaTech Solutions (moderno, responsive) */
+:root{
+  --primary: #0b6ef6;
+  --primary-dark: #0553c7;
+  --bg: #f7fbff;
+  --card: #ffffff;
+  --text: #0f1724;
+  --muted: #6b7280;
+  --radius: 12px;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background:var(--bg);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* HEADER / NAV */
+header{
+  position:sticky;
+  top:0;
+  z-index:120;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 20px;
+  background: rgba(255,255,255,0.82);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 18px rgba(12,18,32,0.06);
+}
+.logo{font-weight:700; color:var(--primary); font-size:1.15rem}
+nav ul{display:flex; gap:18px; list-style:none; margin:0; padding:0}
+nav a{color:var(--text); text-decoration:none; font-weight:600; font-size:0.95rem}
+nav a:hover{color:var(--primary)}
+
+/* Mobile menu button (hidden on desktop) */
+.menu-toggle{
+  display:none;
+  background:none;
+  border:none;
+  font-size:1.1rem;
+}
+
+/* HERO / INICIO */
+.inicio{
+  padding:72px 20px;
+  max-width:1100px;
+  margin:0 auto;
+}
+.inicio h1{
+  font-size:clamp(1.6rem,4.2vw,2.8rem);
+  margin:0 0 12px;
+  line-height:1.02;
+}
+.inicio p{margin:0 0 22px; color:var(--muted); font-size:1rem}
+.btn{
+  display:inline-block;
+  background:linear-gradient(90deg,var(--primary),var(--primary-dark));
+  color:#fff;
+  padding:12px 20px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:700;
+  box-shadow: 0 8px 22px rgba(11,110,246,0.12);
+}
+
+/* SERVICIOS */
+.servicios{
+  padding:56px 20px;
+  max-width:1100px;
+  margin:0 auto;
+}
+.servicios h2{margin:0 0 24px; font-size:1.45rem}
+.servicios .servicio{
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:18px;
+  box-shadow: 0 8px 20px rgba(11,20,40,0.04);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.servicios-grid{
+  display:grid;
+  gap:18px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+/* NOSOTROS, TESTIMONIOS */
+.nosotros, .testimonios, .contacto{
+  padding:48px 20px;
+  max-width:900px;
+  margin:0 auto;
+}
+.testimonios blockquote{
+  background:linear-gradient(180deg,#fff, #fbfdff);
+  border-left:4px solid var(--primary);
+  padding:14px 16px;
+  border-radius:8px;
+  margin:12px 0;
+  color:var(--muted);
+}
+
+/* CONTACTO */
+.contacto form{
+  display:grid;
+  gap:12px;
+}
+.contacto input[type="text"],
+.contacto input[type="email"],
+.contacto textarea{
+  width:100%;
+  padding:12px 14px;
+  border-radius:10px;
+  border:1px solid #e6edf9;
+  background:#fff;
+  font-size:0.95rem;
+  resize:vertical;
+}
+.contacto button{
+  padding:12px 16px;
+  border-radius:10px;
+  border:0;
+  font-weight:700;
+  cursor:pointer;
+  background:linear-gradient(90deg,var(--primary),var(--primary-dark));
+  color:#fff;
+}
+
+/* FOOTER */
+footer{
+  padding:20px;
+  text-align:center;
+  color:var(--muted);
+  font-size:0.9rem;
+  margin-top:28px;
+}
+
+/* Small interactions */
+.servicios .servicio:hover{ transform: translateY(-6px); box-shadow: 0 18px 40px rgba(11,30,80,0.06) }
+
+/* RESPONSIVE */
+@media (max-width:880px){
+  nav ul{display:none}
+  .menu-toggle{display:block}
+  .inicio{padding:44px 18px}
+  .servicios{padding:34px 18px}
+}
+
+/* NAV OPEN (JS toggles .nav-open on header) */
+header.nav-open nav ul{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  position:absolute;
+  right:16px;
+  top:66px;
+  background: #fff;
+  padding:12px;
+  border-radius:10px;
+  box-shadow: 0 10px 30px rgba(12,18,40,0.08);
+}
