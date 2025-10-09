@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaTech Solutions</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- 🔹 MENÚ DE NAVEGACIÓN -->
+    <header>
+        <div class="logo">NovaTech</div>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#testimonios">Testimonios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 🔹 SECCIÓN INICIO -->
+    <section id="inicio" class="inicio">
+        <h1>Soluciones digitales para tu negocio</h1>
+        <p>Somos expertos en desarrollo web, diseño digital y soporte técnico.</p>
+        <a href="#contacto" class="btn">Contáctanos</a>
+    </section>
+
+    <!-- 🔹 SECCIÓN SERVICIOS -->
+    <section id="servicios" class="servicios">
+        <h2>Nuestros Servicios</h2>
+        <div class="servicio">
+            <h3>Desarrollo Web</h3>
+            <p>Creación de sitios modernos, rápidos y adaptables a todo dispositivo.</p>
+        </div>
+        <div class="servicio">
+            <h3>Diseño Gráfico</h3>
+            <p>Diseños atractivos que potencian la imagen de tu marca.</p>
+        </div>
+        <div class="servicio">
+            <h3>Soporte Técnico</h3>
+            <p>Mantenimiento y asistencia tecnológica profesional.</p>
+        </div>
+    </section>
+
+    <!-- 🔹 SECCIÓN NOSOTROS -->
+    <section id="nosotros" class="nosotros">
+        <h2>Sobre Nosotros</h2>
+        <p>NovaTech Solutions nació con el objetivo de ayudar a empresas a crecer en el mundo digital. 
+        Nuestro equipo está formado por desarrolladores, diseñadores y expertos en tecnología.</p>
+    </section>
+
+    <!-- 🔹 SECCIÓN TESTIMONIOS -->
+    <section id="testimonios" class="testimonios">
+        <h2>Testimonios</h2>
+        <blockquote>"Excelente servicio, muy profesionales y atentos." - Juan Pérez</blockquote>
+        <blockquote>"Mi página web quedó increíble. ¡Recomendados!" - Laura Gómez</blockquote>
+    </section>
+
+    <!-- 🔹 SECCIÓN CONTACTO -->
+    <section id="contacto" class="contacto">
+        <h2>Contáctanos</h2>
+        <form>
+            <input type="text" placeholder="Tu nombre" required>
+            <input type="email" placeholder="Tu correo" required>
+            <textarea placeholder="Tu mensaje" required></textarea>
+            <button type="submit">Enviar</button>
+        </form>
+    </section>
+
+    <!-- 🔹 FOOTER -->
+    <footer>
+        <p>© 2025 NovaTech Solutions. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>
